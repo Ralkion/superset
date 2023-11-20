@@ -64,13 +64,13 @@ def _get_columns(
 
 
 def _get_timegrains(
-    query_context: QueryContext, query_obj: QueryObject, _: bool
+    query_context: QueryContext, query_obj: QueryObject, force_cached: bool
 ) -> dict[str, Any]:
     datasource = _get_datasource(query_context, query_obj)
     return {
         "data": [
             {
-                "name": grain.name,
+                "name": _(grain.name),
                 "function": grain.function,
                 "duration": grain.duration,
             }
