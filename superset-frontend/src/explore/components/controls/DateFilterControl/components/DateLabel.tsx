@@ -88,7 +88,7 @@ export const DateLabel = forwardRef(
     return (
       <LabelContainer {...props} tabIndex={0}>
         <span className="date-label-content" ref={ref}>
-          {typeof(props.label) === "string" ? t(props.label) : props.label}
+          {typeof props.label === 'string' ? t(props.label) : props.label}
         </span>
         <Icons.CalendarOutlined
           iconSize="s"
