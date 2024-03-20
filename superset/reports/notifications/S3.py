@@ -52,7 +52,7 @@ class S3Notification(BaseNotification):
         self,
         file_body,
         bucket_name,
-        contentType,
+        content_type,
         aws_access_key_id=None,
         aws_secret_access_key=None,
     ):
@@ -69,7 +69,7 @@ class S3Notification(BaseNotification):
                 key,
                 ExtraArgs={
                     "Metadata": {"Content-Disposition": "inline"},
-                    "ContentType": contentType,
+                    "ContentType": content_type,
                 },
             )
 
@@ -92,14 +92,14 @@ class S3Notification(BaseNotification):
                 self._execute_s3_upload(
                     file_body=files,
                     bucket_name=bucket_name,
-                    contentType=file_type,
+                    content_type=file_type,
                     aws_access_key_id=aws_access_key_id,
                     aws_secret_access_key=aws_secret_access_key,
                 )
 
             elif s3_Subtype == S3SubTypes.S3_ROLE:
                 self._execute_s3_upload(
-                    file_body=files, bucket_name=bucket_name, contentType=file_type
+                    file_body=files, bucket_name=bucket_name, content_type=file_type
                 )
 
             elif s3_Subtype == S3SubTypes.S3_CONFIG:
@@ -109,7 +109,7 @@ class S3Notification(BaseNotification):
                 self._execute_s3_upload(
                     file_body=files,
                     bucket_name=bucket_name,
-                    contentType=file_type,
+                    content_type=file_type,
                     aws_access_key_id=aws_access_key_id,
                     aws_secret_access_key=aws_secret_access_key,
                 )
