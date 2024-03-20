@@ -82,7 +82,7 @@ type SelectValue = {
   label: string;
 };
 interface S3NotificationSettings {
-  aws_secretKey: string;
+  aws_secret_key: string;
   aws_key: string;
   aws_S3_types: string;
 }
@@ -499,7 +499,7 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
     contentType === 'chart' &&
     (isFeatureEnabled(FeatureFlag.AlertsAttachReports) || isReport);
   const initialSettings: S3NotificationSettings = {
-    aws_secretKey: '',
+    aws_secret_key: '',
     aws_key: '',
     aws_S3_types: '',
   };
