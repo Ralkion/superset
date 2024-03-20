@@ -172,7 +172,7 @@ class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
 
     aws_key = Column(encrypted_field_factory.create(String(1024)))
     aws_secret_key = Column(encrypted_field_factory.create(String(1024)))
-    aws_S3_types = Column(String(200))
+    aws_s3_types = Column(String(200))
     extra: ReportScheduleExtra  # type: ignore
 
     def __repr__(self) -> str:
