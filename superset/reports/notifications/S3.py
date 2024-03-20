@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 from io import BytesIO
+from typing import Optional
 from uuid import uuid4
 
 import boto3
@@ -50,14 +51,14 @@ class S3Notification(BaseNotification):
 
     def _execute_s3_upload(
         self,
-        file_body,
-        bucket_name,
-        content_type,
-        aws_access_key_id=None,
-        aws_secret_access_key=None,
-    ):
-        for key, file in file_body.items():
-            file = BytesIO(file)
+        file_body: dict[str, bytes],
+        bucket_name: str,
+        content_type: str,
+        aws_access_key_id: Optional[str] = None,
+        aws_secret_access_key: Optional[str] = None,
+    ) -> None:
+        for key, data in file_body.items():
+            file = BytesIO(data)
             s3 = boto3.client(
                 "s3",
                 aws_access_key_id=aws_access_key_id,
