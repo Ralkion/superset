@@ -29,7 +29,7 @@ class S3SubTypes:
 class S3Notification(BaseNotification):
     type = ReportRecipientType.S3
 
-    def _get_inline_files(self):
+    def _get_inline_files(self) -> dict[str, bytes]:
         current_datetime = datetime.datetime.now()
         formatted_date = current_datetime.strftime("%Y-%m-%d")
         report_name = self._content.name
@@ -46,7 +46,7 @@ class S3Notification(BaseNotification):
                 for screenshot in self._content.screenshots
             }
             return images
-        return []
+        return {}
 
     def _execute_s3_upload(
         self,
