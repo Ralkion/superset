@@ -257,7 +257,7 @@ class ReportSchedulePostSchema(Schema):
                 )
 
     @validates_schema
-    def validate_aws_fields(self, data, **kwargs):
+    def validate_aws_fields(self, data: dict[str, Any], **kwargs: Any) -> None:
         if (
             data["recipients"][0]["type"] == ReportRecipientType.S3
             and data["aws_S3_types"] == S3SubTypes.S3_CRED
