@@ -30,9 +30,9 @@ import { screen, fireEvent as rootFireEvent } from '@testing-library/react';
 import * as uiCore from '@superset-ui/core';
 import * as actions from 'src/features/reports/ReportModal/actions';
 import { FeatureFlag } from '@superset-ui/core';
-import ReportModal from '.';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import ReportModal from '.';
 // import { Store, AnyAction } from 'redux';
 
 let isFeatureEnabledMock: jest.MockInstance<boolean, [string]>;
@@ -83,11 +83,7 @@ describe('S3 ReportModal Component', () => {
 
   it('makes a selection in single mode', async () => {
     const { getByTestId } = render(
-      <ReportModal
-        show={true}
-        type="s3 report"
-        s3Method="AWS_S3_credentials"
-      />,
+      <ReportModal show type="s3 report" s3Method="AWS_S3_credentials" />,
       { useRedux: true },
     );
     waitFor(() => {
@@ -124,11 +120,7 @@ describe('S3 ReportModal Component', () => {
 
   it('when s3Method is AWS_S3_pyconfig or AWS_S3_IAM', async () => {
     const { getByTestId } = render(
-      <ReportModal
-        show={true}
-        type="s3 report"
-        s3Method="AWS_S3_credentials"
-      />,
+      <ReportModal show type="s3 report" s3Method="AWS_S3_credentials" />,
       { useRedux: true },
     );
 
@@ -155,8 +147,8 @@ describe('S3 ReportModal Component', () => {
       // checking for input value
       userEvent.type(bucketInput, 'test-bucket-value');
       expect(bucketInput).toHaveValue('test-bucket-value');
-      expect(accessInput).toHaveLength(0);
-      expect(secretInput).toHaveLength(0);
+      expect(accessInput).not.toBeInTheDocument();
+      expect(secretInput).not.toBeInTheDocument();
     });
   });
 

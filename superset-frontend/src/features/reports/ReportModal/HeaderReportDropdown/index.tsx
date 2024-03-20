@@ -228,72 +228,67 @@ export default function HeaderReportDropDown({
     }
   };
 
-  const textMenu = () => {
-    return (
-      <>
-        <Menu selectable={false} css={onMenuHover}>
-          {report && s3Report === reportType ? (
-            (isDropdownVisible || showS3Modal) && (
-              <>
-                <Menu.Item
-                  css={onMenuItemHover}
-                  onClick={() => toggleActiveKey(report, !isReportActive)}
-                >
-                  <MenuItemWithCheckboxContainer>
-                    <Checkbox checked={isReportActive} onChange={noOp} />
-                    {useS3Options && s3Report === 'S3'
-                      ? t('S3 reports active')
-                      : t('Email reports active')}
-                  </MenuItemWithCheckboxContainer>
-                </Menu.Item>
-                <Menu.Item
-                  css={onMenuItemHover}
-                  onClick={() =>
-                    handleShowMenu(useS3Options ? 's3 report' : 'email report')
-                  }
-                >
-                  {useS3Options && s3Report === 'S3'
-                    ? t('Edit S3 report')
-                    : t('Edit Email report')}
-                </Menu.Item>
-                <Menu.Item
-                  css={onMenuItemHover}
-                  onClick={handleDeleteMenuClick}
-                >
-                  {useS3Options && s3Report === 'S3'
-                    ? t('Delete S3 report')
-                    : t('Delete Email report')}
-                </Menu.Item>
-              </>
-            )
-          ) : (
+  const textMenu = () => (
+    <>
+      <Menu selectable={false} css={onMenuHover}>
+        {report && s3Report === reportType ? (
+          (isDropdownVisible || showS3Modal) && (
             <>
               <Menu.Item
+                css={onMenuItemHover}
+                onClick={() => toggleActiveKey(report, !isReportActive)}
+              >
+                <MenuItemWithCheckboxContainer>
+                  <Checkbox checked={isReportActive} onChange={noOp} />
+                  {useS3Options && s3Report === 'S3'
+                    ? t('S3 reports active')
+                    : t('Email reports active')}
+                </MenuItemWithCheckboxContainer>
+              </Menu.Item>
+              <Menu.Item
+                css={onMenuItemHover}
                 onClick={() =>
                   handleShowMenu(useS3Options ? 's3 report' : 'email report')
                 }
               >
-                {DropdownItemExtension ? (
-                  <StyledDropdownItemWithIcon>
-                    <div>
-                      {useS3Options && s3Report !== 'S3'
-                        ? t('Set up S3 report')
-                        : t('Set up an email report')}
-                    </div>
-                    <DropdownItemExtension />
-                  </StyledDropdownItemWithIcon>
-                ) : useS3Options ? (
-                  t('Set up S3 report')
-                ) : (
-                  t('Set up an email report')
-                )}
+                {useS3Options && s3Report === 'S3'
+                  ? t('Edit S3 report')
+                  : t('Edit Email report')}
+              </Menu.Item>
+              <Menu.Item css={onMenuItemHover} onClick={handleDeleteMenuClick}>
+                {useS3Options && s3Report === 'S3'
+                  ? t('Delete S3 report')
+                  : t('Delete Email report')}
               </Menu.Item>
             </>
-          )}
-        </Menu>
-      </>
-    );
-  };
+          )
+        ) : (
+          <>
+            <Menu.Item
+              onClick={() =>
+                handleShowMenu(useS3Options ? 's3 report' : 'email report')
+              }
+            >
+              {DropdownItemExtension ? (
+                <StyledDropdownItemWithIcon>
+                  <div>
+                    {useS3Options && s3Report !== 'S3'
+                      ? t('Set up S3 report')
+                      : t('Set up an email report')}
+                  </div>
+                  <DropdownItemExtension />
+                </StyledDropdownItemWithIcon>
+              ) : useS3Options ? (
+                t('Set up S3 report')
+              ) : (
+                t('Set up an email report')
+              )}
+            </Menu.Item>
+          </>
+        )}
+      </Menu>
+    </>
+  );
 
   const menu = () => (
     <Menu selectable={false} css={{ width: '200px' }}>

@@ -20,6 +20,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { t } from '@superset-ui/core';
+import {
+  isFeatureEnabled,
+  FeatureFlag,
+} from '@superset-ui/core/src/utils/featureFlags';
 import { Menu } from 'src/components/Menu';
 import { URL_PARAMS } from 'src/constants';
 import ShareMenuItems from 'src/dashboard/components/menu/ShareMenuItems';
@@ -34,7 +38,6 @@ import FilterScopeModal from 'src/dashboard/components/filterscope/FilterScopeMo
 import getDashboardUrl from 'src/dashboard/util/getDashboardUrl';
 import { getActiveFilters } from 'src/dashboard/util/activeDashboardFilters';
 import { getUrlParam } from 'src/utils/urlUtils';
-import { isFeatureEnabled, FeatureFlag } from 'src/featureFlags';
 
 const propTypes = {
   addSuccessToast: PropTypes.func.isRequired,
