@@ -79,7 +79,10 @@ class S3Notification(BaseNotification):
                 self._content.header_data,
             )
 
-    def send(self):
+    def send(self) -> None:
+        if self._aws_configuration is None:
+            raise NotificationError(__("Missing AWS configuration, unable to continue"))
+        
         files = self._get_inline_files()
         file_type = "csv" if self._content.csv else "png"
         bucket_name = json.loads(self._recipient.recipient_config_json)["target"]
